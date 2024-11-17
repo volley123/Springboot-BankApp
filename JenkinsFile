@@ -105,7 +105,7 @@ pipeline {
                             sed -i "s|version: .*|version: ${BUILD_NUMBER}|" values.yaml
                             git add values.yaml
                             git commit -m "Update deployment image to version ${BUILD_NUMBER} and repository to ${ECR_REPO_NAME}"
-                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:DevOps
                         '''
                     }
                 }
