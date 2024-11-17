@@ -1,31 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-mysql
+  name: {{ .Values.mysql.name }}
   labels:
-    app: mysql
-    release: {{ .Release.Name }}
+    app: {{ .Values.mysql.labels.app }}
 spec:
   selector:
     matchLabels:
-      app: mysql
-      release: {{ .Release.Name }}
-  strategy:
-    type: Recreate
+      app: {{ .Values.mysql.labels.app }}
+  replicas: {{ .Values.mysql.replicas }}
   template:
     metadata:
       labels:
-        app: mysql
-        release: {{ .Release.Name }}
+        app: {{ .Values.mysql.labels.app }}
     spec:
       containers:
-      - image: {{ .Values.mysql.image }}
-        name: mysql
+      - name: {{ .Values.mysql.container.name }}
+        image: {{ .Values.mysql.container.image }}
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: {{ .Values.mysql.rootPassword }}
+          value: {{ .Values.mysql.env.MYSQL_ROOT_PASSWORD }}
         - name: MYSQL_DATABASE
-          value: {{ .Values.mysql.database }}
+          value: {{ .Values.mysql.env.MYSQL_DATABASE }}
         ports:
-        - containerPort: 3306
-          name: mysql
+        - containerPort: {{ .Values.mysql.container.port }}

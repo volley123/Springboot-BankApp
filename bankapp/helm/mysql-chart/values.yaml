@@ -1,4 +1,15 @@
 mysql:
-  image: mysql:8
-  rootPassword: "Test@123"
-  database: "bankappdb"
+  name: mysql
+  labels:
+    app: mysql
+  replicas: 1
+  container:
+    name: mysql
+    image: mysql:8
+    port: 3306
+  env:
+    MYSQL_ROOT_PASSWORD: "Test@123"
+    MYSQL_DATABASE: "BankDB"
+  service:
+    port: 3306
+    targetPort: 3306

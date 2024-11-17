@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-mysql-service
+  name: {{ .Values.mysql.name }}
   labels:
-    app: mysql
-    release: {{ .Release.Name }}
+    app: {{ .Values.mysql.labels.app }}
 spec:
+  type: ClusterIP
   ports:
-  - port: 3306
-    targetPort: 3306
+  - port: {{ .Values.mysql.service.port }}
+    targetPort: {{ .Values.mysql.service.targetPort }}
   selector:
-    app: mysql
-    release: {{ .Release.Name }}
+    app: {{ .Values.mysql.labels.app }}
