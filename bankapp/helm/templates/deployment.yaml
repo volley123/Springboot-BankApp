@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bankapp
+  labels:
+    service: bankapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: bankapp
+  template:
+    metadata:
+      labels:
+        service: bankapp
+    spec:
+      containers:
+      - name: bankapp
+        image: {{ .Values.bankapp.image.repo }}:{{ .Values.bankapp.image.version }}
+        imagePullPolicy: {{ .Values.bankapp.image.pullPolicy }}
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+      restartPolicy: Always
+      {{- with .Values.bankapp.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.bankapp.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.bankapp.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

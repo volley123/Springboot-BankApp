@@ -1,0 +1,9 @@
+bankapp:
+  image:
+    repo: 415916042243.dkr.ecr.ap-south-1.amazonaws.com/roboshop-web
+    version: 18
+    pullPolicy: IfNotPresent
+    gateway: null
+  affinity: {}
+  nodeSelector: {}
+  tolerations: []
