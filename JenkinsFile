@@ -81,7 +81,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'master', credentialsId: 'GITHUB', url: 'https://github.com/volley123/example-voting-app.git'
+                git branch: 'DevOps', credentialsId: 'GITHUB', url: 'https://github.com/volley123/Springboot-BankApp.git'
             }
         }
         stage('Update Helm values.yaml') {
