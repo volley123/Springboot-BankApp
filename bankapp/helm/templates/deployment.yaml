@@ -27,6 +27,11 @@ spec:
           requests:
             cpu: 100m
             memory: 256Mi
+        env:
+        {{- range .Values.bankapp.env }}
+        - name: {{ .name }}
+          value: "{{ .value }}"
+        {{- end }}
       restartPolicy: Always
       {{- with .Values.bankapp.affinity }}
       affinity:

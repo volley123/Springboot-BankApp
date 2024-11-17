@@ -3,7 +3,13 @@ bankapp:
     repo: 423966983147.dkr.ecr.ap-south-1.amazonaws.com/bankapp-demo
     version: 22
     pullPolicy: IfNotPresent
-    gateway: null
+  env:
+    - name: SPRING_DATASOURCE_USERNAME
+      value: "root"
+    - name: SPRING_DATASOURCE_URL
+      value: "jdbc:mysql://mysql:3306/BankDB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+    - name: SPRING_DATASOURCE_PASSWORD
+      value: "Test@123"
   affinity: {}
   nodeSelector: {}
   tolerations: []
