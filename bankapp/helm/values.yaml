@@ -1,7 +1,7 @@
 bankapp:
   image:
     repo: 423966983147.dkr.ecr.ap-south-1.amazonaws.com/bankapp-demo
-    version: 22
+    version: 23
     pullPolicy: IfNotPresent
   env:
     - name: SPRING_DATASOURCE_USERNAME
